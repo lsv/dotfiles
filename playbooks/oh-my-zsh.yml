@@ -1,0 +1,47 @@
+---
+- hosts: localhost
+  roles:
+    - role: gantsign.oh-my-zsh
+      users:
+        - username: "{{ username }}"
+          oh_my_zsh:
+            theme: "{{ zsh.theme }}"
+            plugins: "{{ zsh.plugins }}"
+  tasks:
+    - name: Add things to zsh config
+      blockinfile:
+        backup: false
+        path: /home/{{ username }}/.zshrc
+        insertafter: EOF
+        block: |
+          export PATH="$PATH:$HOME/.npm-global/bin"
+          export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+
+          setopt completealiases
+
+          if [ -f ~/.zshaliases.sh ]; then
+            source ~/.zshaliases.sh
+          fi
+
+          if [ -f ~/.zshfunctions.sh ]; then
+            source ~/.zshfunctions.sh
+          fi
+
+          # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+          [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+    
+    - name: Add powerlevel10k
+      git:
+        repo: https://github.com/romkatv/powerlevel10k.git
+        dest: /home/{{ username }}/.oh-my-zsh/custom/themes/powerlevel10k
+        depth: 1
+
+    - name: zsh autosuggestions
+      git:
+        repo: https://github.com/zsh-users/zsh-autosuggestions
+        dest: /home/{{ username }}/.oh-my-zsh/plugins/zsh-autosuggestions
+
+    - name: zsh syntax highlightning
+      git:
+        repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+        dest: /home/{{ username }}/.oh-my-zsh/plugins/zsh-syntax-highlighting

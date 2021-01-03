@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Copy config files
+      copy:
+        src: ./configs
+        dest: ~/
+        force: no

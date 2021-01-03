@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+    - name: diff-so-fancy
+      community.general.npm:
+        name: diff-so-fancy
+        global: true
+    - name: tldr
+      community.general.npm:
+        name: tldr
+        global: true

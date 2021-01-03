@@ -1,0 +1,43 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Download nodejs lts deb
+      get_url:
+        url: https://deb.nodesource.com/setup_lts.x
+        dest: /tmp/node-setup.sh
+      when: node.version == 'lts'
+
+    - name: Download nodejs 10 deb
+      get_url:
+        url: https://deb.nodesource.com/setup_10.x
+        dest: /tmp/node-setup.sh
+      when: node.version == '10'
+
+    - name: Download nodejs 12 deb
+      get_url:
+        url: https://deb.nodesource.com/setup_12.x
+        dest: /tmp/node-setup.sh
+      when: node.version == '12'
+
+    - name: Download nodejs 14 deb
+      get_url:
+        url: https://deb.nodesource.com/setup_14.x
+        dest: /tmp/node-setup.sh
+      when: node.version == '14'
+
+    - name: Download nodejs 15 deb
+      get_url:
+        url: https://deb.nodesource.com/setup_15.x
+        dest: /tmp/node-setup.sh
+      when: node.version == '15'
+
+    - name: Install nodejs dep
+      become: true
+      shell: bash /tmp/node-setup.sh
+
+    - name: Install nodejs apt
+      become: true
+      apt:
+        update_cache: true
+        pkg:
+          - nodejs

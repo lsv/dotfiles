@@ -1,0 +1,55 @@
+---
+- hosts: localhost
+
+  become: true
+
+  tasks:
+    - name: Install php ppa
+      apt_repository:
+        repo: ppa:ondrej/php
+
+    - name: install php72 packages
+      apt:
+        update_cache: true
+        pkg:
+          - php7.2-cli
+      when: php.v72 == true
+
+    - name: install php73 packages
+      apt:
+        update_cache: true
+        pkg:
+          - php7.3-cli
+      when: php.v73 == true
+
+    - name: install php74 packages
+      apt:
+        update_cache: true
+        pkg:
+          - php7.4-cli
+      when: php.v74 == true
+
+    - name: install php80 packages
+      apt:
+        update_cache: true
+        pkg:
+          - php8.0-cli
+      when: php.v80 == true
+
+    - name: check composer installed
+      stat:
+        path: /home/{{ username }}/Programs/composer.phar
+      register: composer_installed
+
+    - name: composer
+      import_tasks: php/composer.yml
+      when: not composer_installed.stat.exists
+
+    - name: check symfony installed
+      stat:
+        path: /home/{{ username }}/Programs/symfony
+      register: symfony_installed
+
+    - name: symfony
+      import_tasks: php/symfony.yml
+      when: not symfony_installed.stat.exists

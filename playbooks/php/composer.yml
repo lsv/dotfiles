@@ -1,0 +1,40 @@
+- name: install composer
+  become: no
+  shell: |
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    php composer-setup.php
+    php -r "unlink('composer-setup.php');"
+
+- name: move composer
+  become: no
+  file:
+    src: composer.phar
+    dest: /home/{{ username }}/Programs/composer.phar
+    state: hard
+
+- name: delete download composer
+  become: no
+  file:
+    path: /home/{{ username }}/composer.phar
+    state: absent
+
+- name: symlink composer.phar
+  become: yes
+  file:
+    src: /home/{{ username }}/Programs/composer.phar
+    dest: /usr/local/bin/composer.phar
+    state: link
+
+- name: symlink composer
+  become: yes
+  file:
+    src: /home/{{ username }}/Programs/composer.phar
+    dest: /usr/local/bin/composer
+    state: link
+    
+- name: symlink c
+  become: yes
+  file:
+    src: /home/{{ username }}/Programs/composer.phar
+    dest: /usr/local/bin/c
+    state: link

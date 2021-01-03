@@ -1,0 +1,32 @@
+- name: Init
+  import_playbook: init.yml
+
+- name: Install ssh key
+  import_playbook: sshkey.yml
+
+- name: Install packages
+  import_playbook: packages.yml
+
+- name: Install nodejs
+  import_playbook: nodejs.yml
+
+- name: Install PHP
+  import_playbook: php.yml
+
+- name: Install oh-my-zsh
+  import_playbook: oh-my-zsh.yml
+
+- name: Install gitconfig
+  import_playbook: gitconfig.yml
+
+- name: Install configs
+  import_playbook: config.yml
+
+- name: Install npm packages
+  import_playbook: npm.yml
+
+- name: Setup terminal
+  import_playbook: terminal.yml
+
+- name: Install jetbrains tools
+  import_playbook: jetbrains.yml
