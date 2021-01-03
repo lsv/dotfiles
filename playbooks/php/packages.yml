@@ -1,0 +1,20 @@
+- name: build packages
+  set_fact:
+    pkglist: "{{ pkglist|default() }}{{ phpv }}-{{ item }} "
+  with_items: "{{ php.packages }}"
+
+- name: trim pkglist
+  set_fact:
+    pkglist: "{{ pkglist | trim }}"
+
+- name: split pkglist
+  set_fact:
+    pkglist: "{{ pkglist.split(' ') }}"
+
+- name: install packages
+  apt:
+    pkg: "{{ pkglist }}"
+
+- name: reset pkglist
+  set_fact:
+    pkglist: ''
