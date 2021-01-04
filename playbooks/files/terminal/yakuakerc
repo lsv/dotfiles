@@ -1,0 +1,22 @@
+[Animation]
+Frames=0
+
+[Appearance]
+TerminalHighlightOnManualActivation=true
+
+[Desktop Entry]
+DefaultProfile=
+
+[Dialogs]
+FirstRun=false
+
+[Shortcuts]
+move-session-left=none
+move-session-right=none
+next-session=Ctrl+Shift+Right
+previous-session=Ctrl+Shift+Left
+split-left-right=Ctrl+Shift+Å
+split-top-bottom=Ctrl+Shift+Æ
+
+[Window]
+Height=40

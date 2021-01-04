@@ -10,3 +10,19 @@
       user:
         name: "{{ the_user }}"
         shell: /bin/zsh
+
+    - name: Add terminal rc
+      copy:
+        src: terminal/yakuakerc
+        dest: /home/{{ username }}/.config
+    
+    - name: Check autostart added
+      stat:
+        src: /home/{{ username }}/.config/autostart/org.kde.yakuake.desktop
+      register: terminal_autostart
+
+    - name: Setup autostart
+      copy:
+        src: terminal/yakuake.desktop
+        dest: /home/{{ username }}/.config/autostart/org.kde.yakuake.desktop
+      when: not terminal_autostart.stat.exists
