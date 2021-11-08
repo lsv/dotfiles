@@ -1,8 +1,13 @@
 ---
 - hosts: localhost
   tasks:
+    - include_vars: vars.yml
+
     - name: Copy config files
       copy:
-        src: ./configs
-        dest: ~/
+        src: "{{ item }}"
+        dest: /home/{{ username }}
         force: no
+        backup: yes
+      with_fileglob:
+        - files/configs/.*
