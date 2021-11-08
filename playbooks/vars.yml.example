@@ -16,7 +16,7 @@ node:
 zsh:
   theme: powerlevel10k/powerlevel10k
   plugins:
-    - timer,
+    - timer
     - zsh-autosuggestions
     - docker
     - git
