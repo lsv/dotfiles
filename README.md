@@ -4,19 +4,17 @@ Download and initiate
 
 ```
 sudo apt install git ansible
-ansible-galaxy install gantsign.visual-studio-code
-ansible-galaxy install gantsign.oh-my-zsh
-ansible-galaxy collection install community.general
+ansible-galaxy install -r requirements.yml
 git clone git@github.com:lsv/dotfiles.git
 cd dotfiles
-cp env.json.dist env.json
+cp playbooks/vars.yml.example playbooks/vars.yml
 ```
 
 - Now put your ssh key in `playbooks/sshkey`
-- Change `env.json` so it fits
+- Change `playbooks/vars.yml` so it fits your needs
 
 Now run the below to install everything
 
 ``` 
-ansible-playbook -K main.yml --extra-vars "@env.json"
+ansible-playbook -K main.yml
 ```

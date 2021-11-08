@@ -1,6 +1,8 @@
 ---
 - hosts: localhost
   tasks:
+    - include_vars: vars.yml
+
     - name: core.excludesfile
       community.general.git_config:
         name: core.excludesfile

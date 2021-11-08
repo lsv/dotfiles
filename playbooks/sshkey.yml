@@ -1,61 +1,34 @@
 ---
 - hosts: localhost
   tasks:
+    - include_vars: vars.yml
+
     - name: Check ssh key is installed
       stat:
         path: /home/{{ username }}/.ssh/id_rsa.pub
       register: ssh_installed
 
-    -   name: Copy ssh key
-    copy:
-      src: "{{ item }}"
-      dest: /home/{{ username }}/.ssh/
-      mode: 0600
-    with_fileglob:
-      - sshkey/*
+    - name: Copy ssh key
+      copy:
+        src: "{{ item }}"
+        dest: /home/{{ username }}/.ssh/
+        mode: 0600
+      with_fileglob:
+        - sshkey/*
       when:
         - not ssh_installed.stat.exists
 
-    -   name: Delete ssh key
-        file:
-          path: "{{ item }}"
-          state: absent
-        with_fileglob:
-          - sshkey/*
+    - name: Delete ssh key
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_fileglob:
+        - sshkey/*
 
-    -   name: Stat ssh agent
-        stat:
-          path: /home/{{ username }}/.config/plasma-workspace/env/ssh-agent-startup.sh
-        register: ssh_agent_installed
+    - name: Install KDE Neon ssh agent
+      import_tasks: sshagent/kdeneon.yml
+      when: hostvars[inventory_hostname].ansible_distribution == 'KDE neon'
 
-    -   name: Setup ssh agent script on startup
-        copy:
-          mode: 'go+r,u+rwx'
-          dest: /home/{{ username }}/.config/plasma-workspace/env/ssh-agent-startup.sh
-          content: |
-            #!/bin/bash
-
-            [ -n "$SSH_AGENT_PID"] || eval "$(ssh-agent -s)"
-        when: hostvars[inventory_hostname].ansible_distribution == 'KDE neon' and not ssh_agent_installed.stat.exists
-
-    -   name: Setup ssh add keys script on login
-        copy:
-          mode: 'go+r,u+rwx'
-          dest: /home/{{ username }}/.config/autostart-scripts/ssh-add.sh
-          content: |
-            #!/bin/bash
-
-            export SSH_ASKPASS=/usr/bin/ksshaskpass
-
-            ssh-add $HOME/.ssh/id_rsa
-        when: hostvars[inventory_hostname].ansible_distribution == 'KDE neon' and not ssh_agent_installed.stat.exists
-
-    -   name: Setup ssh agento stop script on shutdown
-        copy:
-          mode: 'go+r,u+rwx'
-          dest: /home/{{ username }}/.config/plasma-workspace/shutdown/ssh-agent-shutdown.sh
-          content: |
-            #!/bin/bash
-
-            [-z "$SSH\_AGENT\_PID"] || eval "$(ssh-agent -k)"
-        when: hostvars[inventory_hostname].ansible_distribution == 'KDE neon' and not ssh_agent_installed.stat.exists
+    - name: Install Ubuntu ssh agent
+      import_tasks: sshagent/ubuntu.yml
+      when: hostvars[inventory_hostname].ansible_distribution == 'Ubuntu'

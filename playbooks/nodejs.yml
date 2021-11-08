@@ -1,6 +1,8 @@
 ---
 - hosts: localhost
   tasks:
+    - include_vars: vars.yml
+
     - name: Download nodejs lts deb
       get_url:
         url: https://deb.nodesource.com/setup_lts.x

@@ -4,6 +4,8 @@
   become: true
 
   tasks:
+    - include_vars: vars.yml
+
     - name: Install php ppa
       apt_repository:
         repo: ppa:ondrej/php
@@ -39,7 +41,7 @@
 
     - name: check composer installed
       stat:
-        path: /home/{{ username }}/Programs/composer.phar
+        path: /home/{{ username }}/{{ folders.programs }}/composer.phar
       register: composer_installed
 
     - name: composer
@@ -48,7 +50,7 @@
 
     - name: check symfony installed
       stat:
-        path: /home/{{ username }}/Programs/symfony
+        path: /home/{{ username }}/{{ folders.programs }}/symfony
       register: symfony_installed
 
     - name: symfony

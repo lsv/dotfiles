@@ -9,7 +9,7 @@
   become: no
   file:
     src: composer.phar
-    dest: /home/{{ username }}/Programs/composer.phar
+    dest: /home/{{ username }}/{{ folders.programs }}/composer.phar
     state: hard
 
 - name: delete download composer
@@ -21,20 +21,20 @@
 - name: symlink composer.phar
   become: yes
   file:
-    src: /home/{{ username }}/Programs/composer.phar
+    src: /home/{{ username }}/{{ folders.programs }}/composer.phar
     dest: /usr/local/bin/composer.phar
     state: link
 
 - name: symlink composer
   become: yes
   file:
-    src: /home/{{ username }}/Programs/composer.phar
+    src: /home/{{ username }}/{{ folders.programs }}/composer.phar
     dest: /usr/local/bin/composer
     state: link
-    
+
 - name: symlink c
   become: yes
   file:
-    src: /home/{{ username }}/Programs/composer.phar
+    src: /home/{{ username }}/{{ folders.programs }}/composer.phar
     dest: /usr/local/bin/c
     state: link

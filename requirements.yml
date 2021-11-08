@@ -1,0 +1,7 @@
+---
+roles:
+  - name: gantsign.visual-studio-code
+  - name: gantsign.oh-my-zsh
+
+collections:
+  - name: community.general

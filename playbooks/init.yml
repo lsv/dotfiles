@@ -1,16 +1,18 @@
 ---
 - hosts: localhost
   tasks:
+    - include_vars: vars.yml
+
     - name: create programs directory
       file:
-        path: /home/{{ username }}/Programs
+        path: /home/{{ username }}/{{ folders.programs }}
         state: directory
         owner: "{{ username }}"
         group: "{{ username }}"
 
     - name: create projects directory
       file:
-        path: /home/{{ username }}/Projects
+        path: /home/{{ username }}/{{ folders.projects }}
         state: directory
         owner: "{{ username }}"
         group: "{{ username }}"

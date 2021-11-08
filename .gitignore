@@ -1,3 +1,4 @@
-/env.json
-/sshkey
+/sshkey/*
 !/sshkey/.gitkeep
+/playbooks/vars.yml
+/.idea

@@ -27,6 +27,3 @@
 
 - name: Setup terminal
   import_playbook: terminal.yml
-
-- name: Install jetbrains tools
-  import_playbook: jetbrains.yml

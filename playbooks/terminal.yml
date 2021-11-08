@@ -1,28 +1,10 @@
 ---
--   hosts: localhost
-  name: set up zsh for user
-  become: no
-  vars:
-    the_user: "{{ ansible_user_id }}"
+- hosts: localhost
   tasks:
-    -   name: change user shell to zsh
-        become: yes
-        user:
-          name: "{{ the_user }}"
-          shell: /bin/zsh
+    - include_vars: vars.yml
 
-    -   name: Add terminal rc
-        copy:
-          src: terminal/yakuakerc
-          dest: /home/{{ username }}/.config
-
-    -   name: Check autostart added
-        stat:
-          path: /home/{{ username }}/.config/autostart/org.kde.yakuake.desktop
-        register: terminal_autostart
-
-    - name: Setup autostart
-      copy:
-        src: terminal/yakuake.desktop
-        dest: /home/{{ username }}/.config/autostart/org.kde.yakuake.desktop
-      when: not terminal_autostart.stat.exists
+    - name: change user shell to zsh
+      become: yes
+      user:
+        name: "{{ username }}"
+        shell: /bin/zsh
