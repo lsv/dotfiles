@@ -2,20 +2,20 @@
 username: "<your username>"
 
 folders:
-  - projects: projects
-  - programs: programs
+  projects: projects
+  programs: programs
 
 git:
-  - email: "<your git email>"
-  - name: "<your git name>"
-  - difftool: meld
+  email: "<your git email>"
+  name: "<your git name>"
+  difftool: meld
 
 node:
   version: lts
 
 zsh:
-  - theme: powerlevel10k/powerlevel10k
-  - plugins:
+  theme: powerlevel10k/powerlevel10k
+  plugins:
     - timer,
     - zsh-autosuggestions
     - docker
@@ -38,7 +38,7 @@ zsh:
     - z
 
 apt:
-  - packages:
+  packages:
     - zsh
     - vim
     - autojump
@@ -53,11 +53,11 @@ apt:
     - software-properties-common
 
 php:
-  - v72: false
-  - v73: false
-  - v74: true
-  - v80: true
-  - packages:
+  v72: false
+  v73: false
+  v74: true
+  v80: true
+  packages:
     - bcmath
     - cli
     - curl
