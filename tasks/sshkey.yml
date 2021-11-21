@@ -13,4 +13,4 @@
         dest: "{{ home }}/{{ username }}/{{ folders.ssh }}/"
         mode: "0600"
       with_fileglob:
-        - sshkey/*
+        - ../sshkey/*

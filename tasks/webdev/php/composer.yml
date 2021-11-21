@@ -9,9 +9,9 @@
   block:
       - name: download
         shell: |
-          wget -O "{{ homedir }}/{{ username }}/{{ folders.programs }}/composer-setup.php" https://getcomposer.org/installer
-          php "{{ homedir }}/{{ username }}/{{ folders.programs }}/composer-setup.php --install-dir=/home/{{ username }}/{{ folders.programs }}"
-          rm "{{ homedir }}/{{ username }}/{{ folders.programs }}/composer-setup.php"
+          cd /tmp
+          curl -sS https://getcomposer.org/installer | sudo php
+          cp "/tmp/composer.phar" "{{ homedir }}/{{ username }}/{{ folders.programs }}/composer.phar"
 
       - name: symlink composer.phar
         become: yes
