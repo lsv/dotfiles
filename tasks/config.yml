@@ -2,7 +2,7 @@
 - name: Copy config files
   copy:
     src: "{{ item }}"
-    dest: /home/{{ username }}
+    dest: "{{ homedir }}/{{ username }}"
     force: no
     backup: yes
   with_fileglob:

@@ -20,20 +20,8 @@
     phpv: php8.0
   when: php.v80 == true
 
-- name: check composer installed
-  stat:
-    path: "/home/{{ username }}/{{ folders.programs }}/composer.phar"
-  register: composer_installed
-
 - name: composer
   include_tasks: php/composer.yml
-  when: not composer_installed.stat.exists
-
-- name: check symfony installed
-  stat:
-    path: "/home/{{ username }}/{{ folders.programs }}/symfony"
-  register: symfony_installed
 
 - name: symfony
   include_tasks: php/symfony.yml
-  when: not symfony_installed.stat.exists
