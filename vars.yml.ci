@@ -1,0 +1,87 @@
+---
+username: "your_username"
+
+folders:
+  homedir: /home
+  projects: projects
+  programs: programs
+  data: data
+
+git:
+  email: "your@git.email"
+  name: "your git name"
+  difftool: meld
+
+node:
+  version: lts
+  #version: 12
+  #version: 14
+  #version: 16
+  #version: 17
+  #version: 18
+zsh:
+  theme: powerlevel10k/powerlevel10k
+  plugins:
+    - timer
+    - zsh-autosuggestions
+    - docker
+    - git
+    - git-flow
+    - autojump
+    - copydir
+    - copyfile
+    - cp
+    - symfony2
+    - catimg
+    - colored-man-pages
+    - command-not-found
+    - colorize
+    - composer
+    - dirhistory
+    - gitignore
+    - jsontools
+    - zsh-syntax-highlighting
+    - z
+
+apt:
+  packages:
+    - zsh
+    - vim
+    - autojump
+    - unzip
+    - fzf
+    - meld
+    - ranger
+    - htop
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+php:
+  v72: false
+  v73: false
+  v74: true
+  v80: true
+  packages:
+    - bcmath
+    - cli
+    - curl
+    - gd
+    - imap
+    - intl
+    - mbstring
+    - mysql
+    - soap
+    - sqlite3
+    - xdebug
+    - xml
+    - xsl
+    - zip
+
+npm:
+  global_packages:
+    - diff-so-fancy
+    - tldr
+    - "@vue/cli"
+    - npx
