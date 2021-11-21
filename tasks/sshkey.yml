@@ -1,7 +1,7 @@
 ---
 - name: Check ssh key is installed
   stat:
-    path: "{{ homedir }}/{{ username }}/{{ folder.ssh }}/id_rsa.pub"
+    path: "{{ homedir }}/{{ username }}/{{ folders.ssh }}/id_rsa.pub"
   register: ssh_installed
 
 - name: SSH setup
@@ -10,7 +10,7 @@
     - name: Copy ssh key
       copy:
         src: "{{ item }}"
-        dest: "{{ home }}/{{ username }}/{{ folder.ssh }}/"
+        dest: "{{ home }}/{{ username }}/{{ folders.ssh }}/"
         mode: "0600"
       with_fileglob:
         - sshkey/*
