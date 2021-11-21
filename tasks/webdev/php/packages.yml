@@ -13,6 +13,7 @@
     pkglist: "{{ pkglist.split(' ') }}"
 
 - name: install packages
+  become: true
   apt:
     pkg: "{{ pkglist }}"
 

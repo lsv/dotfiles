@@ -19,7 +19,7 @@
       include_tasks: tasks/sshkey.yml
 
     - name: APT
-      include_tasks: tasks/packages.yml
+      include_tasks: tasks/apt.yml
 
     - name: Web development
       include_tasks: tasks/webdev.yml

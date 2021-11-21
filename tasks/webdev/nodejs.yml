@@ -1,5 +1,6 @@
 ---
 - name: Download nodejs
+  become: true
   get_url:
     url: "https://deb.nodesource.com/setup_{{ node.version }}.x"
     dest: /tmp/node-setup.sh
