@@ -1,21 +1,6 @@
 ---
-- name: create programs directory
+- name: create directories
   file:
-    path: "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}"
+    path: "{{ homedir }}/{{ username }}/{{ item.value }}"
     state: directory
-    owner: "{{ username }}"
-    group: "{{ username }}"
-
-- name: create projects directory
-  file:
-    path: "{{ folders.homedir }}/{{ username }}/{{ folders.projects }}"
-    state: directory
-    owner: "{{ username }}"
-    group: "{{ username }}"
-
-- name: create data directory
-  file:
-    path: "/{{ folders.homedir }}/{{ username }}/{{ folders.data }}"
-    state: directory
-    owner: "{{ username }}"
-    group: "{{ username }}"
+  loop: "{{ folders | dict2items }}"

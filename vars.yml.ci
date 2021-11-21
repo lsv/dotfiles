@@ -1,8 +1,9 @@
 ---
 username: runner
 
+homedir: /home
+
 folders:
-  homedir: /home
   projects: projects
   programs: programs
   data: data

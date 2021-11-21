@@ -1,7 +1,7 @@
 ---
 - name: Is composer installed?
   stat:
-    path: "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/composer.phar"
+    path: "{{ homedir }}/{{ username }}/{{ folders.programs }}/composer.phar"
   register: stat_composer
 
 - name: Download composer
@@ -9,14 +9,14 @@
   block:
       - name: download
         shell: |
-          wget -O "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/composer-setup.php" https://getcomposer.org/installer
-          php "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/composer-setup.php --install-dir=/home/{{ username }}/{{ folders.programs }}"
-          rm "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/composer-setup.php"
+          wget -O "{{ homedir }}/{{ username }}/{{ folders.programs }}/composer-setup.php" https://getcomposer.org/installer
+          php "{{ homedir }}/{{ username }}/{{ folders.programs }}/composer-setup.php --install-dir=/home/{{ username }}/{{ folders.programs }}"
+          rm "{{ homedir }}/{{ username }}/{{ folders.programs }}/composer-setup.php"
 
       - name: symlink composer.phar
         become: yes
         file:
-          src: "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/composer.phar"
+          src: "{{ homedir }}/{{ username }}/{{ folders.programs }}/composer.phar"
           dest: /usr/local/bin/composer.phar
           state: link
           force: true

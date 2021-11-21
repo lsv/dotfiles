@@ -1,8 +1,9 @@
 ---
 username: "your_username"
 
+homedir: /home
+
 folders:
-  homedir: /home
   projects: projects
   programs: programs
   data: data
