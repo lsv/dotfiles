@@ -5,6 +5,7 @@
       include_vars: ../vars.yml
   roles:
     - role: gantsign.oh-my-zsh
+      become: true
       users:
         - username: "{{ username }}"
           oh_my_zsh:
