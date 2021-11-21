@@ -1,0 +1,34 @@
+name: Test dotfiles
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Install ansible
+        run: |
+          sudo apt install -y ansible
+
+      - name: Set vars
+        run: |
+          cp vars.yml.example vars.yml
+
+      - name: Copy ssh key (fake one!)
+        run: |
+          echo "fake-priv-key" > sshkey/id_rsa
+          echo "fake-pub-key" > sshkey/id_rsa.pub
+
+      - name: Ansible
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          requirements: requirements.yml
+          playbook: main.yml
+          options: |
+            --verbose
