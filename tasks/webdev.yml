@@ -1,0 +1,9 @@
+---
+- name: Install nodejs
+  include_tasks: webdev/nodejs.yml
+
+- name: Install NPM packages
+  include_tasks: webdev/npm.yml
+
+- name: Install PHP
+  include_tasks: webdev/php.yml

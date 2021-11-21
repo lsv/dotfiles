@@ -1,0 +1,6 @@
+---
+- name: Install global npm packages
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+  loop: "{{ npm.global_packages }}"

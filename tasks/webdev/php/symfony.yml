@@ -1,0 +1,29 @@
+---
+- name: Determine latest symfony version
+  shell: |
+    curl https://get.symfony.com/cli/LATEST
+  register: symfony_version
+
+- name: Download symfony
+  shell: |
+    wget -O "/home/{{ username }}/{{ folders.programs }}/symfony.gz" https://github.com/symfony/cli/releases/download/v{{ symfony_version.stdout }}/symfony_linux_amd64.gz
+  when: symfony_version.stdout is defined
+
+- name: Download symfony (undetermined version)
+  shell: |
+    wget -O "/home/{{ username }}/{{ folders.programs }}/symfony.gz" https://github.com/symfony/cli/releases/download/v4.26.9/symfony_linux_amd64.gz
+  when: symfony_version.stdout is undefined
+
+- name: unzip symfony
+  shell: gunzip "/home/{{ username }}/{{ folders.programs }}/symfony.gz"
+
+- name: executeable symfony
+  shell: chmod +x "/home/{{ username }}/{{ folders.programs }}/symfony"
+
+- name: symlink symfony
+  become: true
+  file:
+    src: "/home/{{ username }}/{{ folders.programs }}/symfony"
+    dest: "/usr/local/bin/symfony"
+    state: link
+    force: true

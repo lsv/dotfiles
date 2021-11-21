@@ -1,0 +1,9 @@
+---
+- name: Copy config files
+  copy:
+    src: "{{ item }}"
+    dest: /home/{{ username }}
+    force: no
+    backup: yes
+  with_fileglob:
+    - files/configs/.*

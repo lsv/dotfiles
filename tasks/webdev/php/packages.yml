@@ -1,3 +1,4 @@
+---
 - name: build packages
   set_fact:
     pkglist: "{{ pkglist|default() }}{{ phpv }}-{{ item }} "

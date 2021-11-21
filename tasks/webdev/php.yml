@@ -1,0 +1,39 @@
+---
+- name: Install php ppa
+  apt_repository:
+    repo: ppa:ondrej/php
+
+- name: Update apt cache
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: php74
+  include_tasks: php/packages.yml
+  vars:
+    phpv: php7.4
+  when: php.v74 == true
+
+- name: php80
+  include_tasks: php/packages.yml
+  vars:
+    phpv: php8.0
+  when: php.v80 == true
+
+- name: check composer installed
+  stat:
+    path: "/home/{{ username }}/{{ folders.programs }}/composer.phar"
+  register: composer_installed
+
+- name: composer
+  include_tasks: php/composer.yml
+  when: not composer_installed.stat.exists
+
+- name: check symfony installed
+  stat:
+    path: "/home/{{ username }}/{{ folders.programs }}/symfony"
+  register: symfony_installed
+
+- name: symfony
+  include_tasks: php/symfony.yml
+  when: not symfony_installed.stat.exists

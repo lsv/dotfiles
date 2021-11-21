@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  pre_tasks:
+    - name: Include vars
+      include_vars: ../vars.yml
+  roles:
+    - role: geerlingguy.docker
+      docker_users:
+        - "{{ username }}"

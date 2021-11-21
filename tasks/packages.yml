@@ -1,0 +1,13 @@
+---
+- name: Update apt
+  become: true
+  apt:
+    update_cache: true
+    upgrade: dist
+    autoremove: yes
+    autoclean: yes
+
+- name: Install packages
+  become: true
+  apt:
+    pkg: "{{ apt.packages }}"

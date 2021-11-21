@@ -1,0 +1,16 @@
+---
+- name: Download nodejs
+  get_url:
+    url: "https://deb.nodesource.com/setup_{{ node.version }}.x"
+    dest: /tmp/node-setup.sh
+
+- name: Install nodejs dep
+  become: true
+  shell: bash /tmp/node-setup.sh
+
+- name: Install nodejs apt
+  become: true
+  apt:
+    update_cache: true
+    pkg:
+      - nodejs

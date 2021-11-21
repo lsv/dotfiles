@@ -1,7 +1,7 @@
 ---
 roles:
-  - name: gantsign.visual-studio-code
   - name: gantsign.oh-my-zsh
+  - name: geerlingguy.docker
 
 collections:
   - name: community.general

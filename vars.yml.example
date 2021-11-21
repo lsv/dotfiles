@@ -4,6 +4,7 @@ username: "<your username>"
 folders:
   projects: projects
   programs: programs
+  data: data
 
 git:
   email: "<your git email>"
@@ -12,7 +13,11 @@ git:
 
 node:
   version: lts
-
+  #version: 12
+  #version: 14
+  #version: 16
+  #version: 17
+  #version: 18
 zsh:
   theme: powerlevel10k/powerlevel10k
   plugins:
@@ -72,3 +77,10 @@ php:
     - xml
     - xsl
     - zip
+
+npm:
+  global_packages:
+    - diff-so-fancy
+    - tldr
+    - @vue/cli
+    - npx

@@ -1,0 +1,21 @@
+---
+- name: create programs directory
+  file:
+    path: /home/{{ username }}/{{ folders.programs }}
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: create projects directory
+  file:
+    path: /home/{{ username }}/{{ folders.projects }}
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: create data directory
+  file:
+    path: /home/{{ username }}/{{ folders.data }}
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
