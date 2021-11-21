@@ -27,8 +27,8 @@ jobs:
 
       - name: Copy ssh key (fake one!)
         run: |
-          echo "fake-priv-key" > sshkey/id_rsa
-          echo "fake-pub-key" > sshkey/id_rsa.pub
+          echo "fake-priv-key" > sshkey/test__id_rsa
+          echo "fake-pub-key" > sshkey/test__id_rsa.pub
 
       - name: Install requirements
         run: |
@@ -38,3 +38,7 @@ jobs:
       - name: Run ansible
         run: |
           ansible-playbook -v -K main.yml
+
+      - name: Test ssh key installed
+        run: |
+          cat $HOME/.ssh/test__id_rsa.pub

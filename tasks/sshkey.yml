@@ -1,24 +1,16 @@
 ---
 - name: Check ssh key is installed
   stat:
-    path: "{{ homedir }}/{{ username }}/.ssh/id_rsa.pub"
+    path: "{{ homedir }}/{{ username }}/{{ folder.ssh }}/id_rsa.pub"
   register: ssh_installed
 
 - name: SSH setup
   when: not ssh_installed.stat.exists
   block:
-    - name: Create ssh dir
-      file:
-        path: "{{ homedir }}/{{ username }}/.ssh"
-        owner: "{{ username }}"
-        group: "{{ username }}"
-        mode: "0755"
-        state: directory
-
     - name: Copy ssh key
       copy:
         src: "{{ item }}"
-        dest: "{{ home }}/{{ username }}/.ssh/"
+        dest: "{{ home }}/{{ username }}/{{ folder.ssh }}/"
         mode: "0600"
       with_fileglob:
         - sshkey/*
