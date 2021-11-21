@@ -2,9 +2,6 @@
 - name: Import ohmyzsh playbook
   import_playbook: playbooks/ohmyzsh.yml
 
-- name: Import docker playbook
-  import_playbook: playbooks/docker.yml
-
 - hosts: localhost
   tasks:
     - include_vars: vars.yml
@@ -32,3 +29,6 @@
 
     - name: Setup terminal
       include_tasks: tasks/terminal.yml
+
+- name: Import docker playbook
+  import_playbook: playbooks/docker.yml

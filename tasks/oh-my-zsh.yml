@@ -1,5 +1,11 @@
 ---
+- name: stat zshrc
+  stat:
+    path: "{{ homedir }}/{{ username }}/.zshrc"
+  register: zsh_file
+
 - name: Add things to zsh config
+  when: zsh_file.stat.exists
   blockinfile:
     backup: true
     path: "{{ homedir }}/{{ username }}/.zshrc"
