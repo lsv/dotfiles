@@ -1,5 +1,5 @@
 ---
-username: "<your_username>"
+username: "your_username"
 
 folders:
   projects: projects
@@ -7,8 +7,8 @@ folders:
   data: data
 
 git:
-  email: "<your@git.email>"
-  name: "<your git name>"
+  email: "your@git.email"
+  name: "your git name"
   difftool: meld
 
 node:
