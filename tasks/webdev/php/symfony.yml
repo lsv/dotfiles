@@ -1,7 +1,7 @@
 ---
 - name: Is symfony installed?
   stat:
-    path: "{{ homedir }}/{{ username }}/{{ folders.programs }}/symfony"
+    path: "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/symfony"
   register: symfony_installed
 
 - name: Install symfony
@@ -14,24 +14,24 @@
 
     - name: Download symfony
       shell: |
-        wget -O "{{ homedir }}/{{ username }}/{{ folders.programs }}/symfony.gz" https://github.com/symfony/cli/releases/download/v{{ symfony_version.stdout }}/symfony_linux_amd64.gz
+        wget -O "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/symfony.gz" https://github.com/symfony/cli/releases/download/v{{ symfony_version.stdout }}/symfony_linux_amd64.gz
       when: symfony_version.stdout is defined
 
     - name: Download symfony (undetermined version)
       shell: |
-        wget -O "{{ homedir }}/{{ username }}/{{ folders.programs }}/symfony.gz" https://github.com/symfony/cli/releases/download/v4.26.9/symfony_linux_amd64.gz
+        wget -O "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/symfony.gz" https://github.com/symfony/cli/releases/download/v4.26.9/symfony_linux_amd64.gz
       when: symfony_version.stdout is undefined
 
     - name: unzip symfony
-      shell: gunzip "{{ homedir }}/{{ username }}/{{ folders.programs }}/symfony.gz"
+      shell: gunzip "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/symfony.gz"
 
     - name: executeable symfony
-      shell: chmod +x "{{ homedir }}/{{ username }}/{{ folders.programs }}/symfony"
+      shell: chmod +x "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/symfony"
 
     - name: symlink symfony
       become: true
       file:
-        src: "{{ homedir }}/{{ username }}/{{ folders.programs }}/symfony"
+        src: "{{ folders.homedir }}/{{ username }}/{{ folders.programs }}/symfony"
         dest: "/usr/local/bin/symfony"
         state: link
         force: true

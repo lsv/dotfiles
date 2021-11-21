@@ -1,7 +1,7 @@
 ---
 - name: Check ssh key is installed
   stat:
-    path: "{{ homedir }}/{{ username }}/.ssh/id_rsa.pub"
+    path: "{{ folders.homedir }}/{{ username }}/.ssh/id_rsa.pub"
   register: ssh_installed
 
 - name: SSH setup
@@ -9,7 +9,7 @@
   block:
     - name: Create ssh dir
       file:
-        path: "{{ homedir }}/{{ username }}/.ssh"
+        path: "{{ folders.homedir }}/{{ username }}/.ssh"
         owner: "{{ username }}"
         group: "{{ username }}"
         mode: "0755"
