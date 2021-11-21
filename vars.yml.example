@@ -82,5 +82,5 @@ npm:
   global_packages:
     - diff-so-fancy
     - tldr
-    - @vue/cli
+    - "@vue/cli"
     - npx
