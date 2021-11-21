@@ -18,7 +18,7 @@ jobs:
 
       - name: Set vars
         run: |
-          cp vars.yml.example vars.yml
+          cp vars.yml.ci vars.yml
 
       - name: Get env details
         run: |
@@ -37,4 +37,4 @@ jobs:
 
       - name: Run ansible
         run: |
-          ansible-playbook -vvvv -K main.yml
+          ansible-playbook -v -K main.yml
